@@ -61,7 +61,7 @@ df_pipeline = df_pipeline[df_pipeline.item_weight_lbs > 0]
 engine = sqa.create_engine('postgresql+psycopg2://postgres:vincent23@localhost:5432/enterprise_supply_chain_routing_audit')
 
 with engine.connect() as connection:
-    df_pipeline.to_sql('orders', con = connection, index = 'False', if_exists = 'replace')
+    df_pipeline.to_sql('orders', con = connection, index = False, if_exists = 'replace')
     print('Connection (orders) opened successfully')
 
 hub_points = df_pipeline[['order_id', 'hub_lat', 'hub_lon', 'route_distance_miles']].rename(columns = {'hub_lat':'latitude', 'hub_lon':'longitude'})
